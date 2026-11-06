@@ -1,0 +1,50 @@
+[browser]
+# LocalRAG makes no outbound network calls, so Streamlit's usage statistics
+# (enabled by default) are switched off as well.
+gatherUsageStats = false
+
+[server]
+# The app handles private documents: listen on this computer only
+# (the default is every network interface).
+address = "localhost"
+maxUploadSize = 50
+
+[client]
+# Show the type of an unexpected error instead of a full stack trace.
+showErrorDetails = "type"
+# End-user mode: hides the "Deploy" button and developer menu entries.
+toolbarMode = "viewer"
+
+[theme]
+# "Organic" palette. Fonts use the design's stacks with fallbacks, so nothing
+# is downloaded at run time (the app works offline).
+base = "light"
+primaryColor = "#35422d"
+backgroundColor = "#eee6d6"
+secondaryBackgroundColor = "#f5eddf"
+textColor = "#29251d"
+linkColor = "#694737"
+codeBackgroundColor = "#ddd5c3"
+font = "Instrument Sans, sans-serif"
+headingFont = "Source Serif 4, Georgia, serif"
+headingFontSizes = ["2.875rem", "1.875rem", "1.375rem", "1.125rem", "1rem", "0.875rem"]
+headingFontWeights = 500
+greenColor = "#35422d"
+greenBackgroundColor = "#dfe2c9"
+greenTextColor = "#2a3524"
+blueColor = "#443b2f"
+blueBackgroundColor = "#ddd5c3"
+blueTextColor = "#443b2f"
+yellowColor = "#8a7f4a"
+yellowBackgroundColor = "#e9e3c3"
+yellowTextColor = "#443b2f"
+orangeColor = "#ad7d62"
+orangeBackgroundColor = "#efd9c8"
+orangeTextColor = "#5c3a2b"
+redColor = "#8c3f2b"
+redBackgroundColor = "#f0d3c6"
+redTextColor = "#6e2d1d"
+
+[theme.sidebar]
+backgroundColor = "#ddd5c3"
+secondaryBackgroundColor = "#f5eddf"

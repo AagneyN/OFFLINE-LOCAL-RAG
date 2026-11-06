@@ -1,0 +1,173 @@
+/* LocalRAG "Organic" theme. Colours and type come from .streamlit/config.toml;
+   this file adds the shapes, paper grain, controls and responsive rules. */
+
+:root {
+  --dp-color-ground: #eee6d6;
+  --dp-color-surface: #f5eddf;
+  --dp-color-ink: #29251d;
+  --dp-color-primary: #35422d;
+  --dp-color-field: #694737;
+  --dp-color-art-accent: #ad7d62;
+  --dp-color-surface-muted: #ddd5c3;
+  --dp-color-highlight: #b9b28b;
+  --dp-color-ink-muted: #443b2f;
+  --dp-typography-display: "Organic Source Serif", "Source Serif 4", Georgia, serif;
+  --dp-typography-reading: "Organic Instrument Sans", "Instrument Sans", sans-serif;
+  --dp-radius-control: 27px 19px 29px 16px / 22px 26px 19px 29px;
+  --dp-radius-sheet-a: 34px 22px 38px 20px / 26px 34px 22px 36px;
+  --dp-radius-sheet-b: 20px 36px 24px 32px / 34px 22px 36px 24px;
+  --dp-border-hairline: 1px;
+  --dp-motion-interaction: 240ms ease;
+  --dp-rule: rgba(41, 37, 29, 0.18);
+}
+
+/* ---- ground and paper grain ------------------------------------------ */
+[data-testid="stApp"] {
+  background-color: var(--dp-color-ground);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .16 0 0 0 0 .14 0 0 0 0 .11 0 0 0 .07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stSidebar"] { border-right: var(--dp-border-hairline) solid var(--dp-rule); }
+.block-container { max-width: 1100px; padding-top: 3.5rem; }
+
+/* ---- type ------------------------------------------------------------- */
+h1, h2, h3 { letter-spacing: -0.02em; line-height: 1.12; color: var(--dp-color-ink); }
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li { line-height: 1.8; font-size: 16px; }
+[data-testid="stCaptionContainer"] { font-size: 13px; color: var(--dp-color-ink-muted); }
+.stMarkdown p { max-width: 46rem; }
+[data-testid="stMetricValue"] { font-family: var(--dp-typography-display); font-weight: 500; }
+[data-testid="stMetricLabel"] { font-size: 12px; color: var(--dp-color-ink-muted); letter-spacing: 0.02em; }
+
+/* ---- buttons ---------------------------------------------------------- */
+.stButton button, [data-testid="stFileUploader"] button {
+  border-radius: var(--dp-radius-control);
+  font-size: 14px;
+  transition: background-color var(--dp-motion-interaction), color var(--dp-motion-interaction),
+              border-color var(--dp-motion-interaction), transform var(--dp-motion-interaction);
+}
+.stButton button[kind="primary"] { background: var(--dp-color-primary); color: var(--dp-color-surface); border: 1px solid var(--dp-color-primary); }
+.stButton button[kind="primary"]:hover:not(:disabled) { background: #46563b; border-color: #46563b; color: var(--dp-color-surface); }
+.stButton button[kind="secondary"], [data-testid="stFileUploader"] button {
+  background: transparent; color: var(--dp-color-primary); border: 1px solid var(--dp-color-primary);
+}
+.stButton button[kind="secondary"]:hover:not(:disabled), [data-testid="stFileUploader"] button:hover {
+  background: var(--dp-color-surface-muted); color: var(--dp-color-primary); border-color: var(--dp-color-primary);
+}
+.stButton button:active:not(:disabled) { transform: scale(0.97); }
+.stButton button:disabled { opacity: 0.55; }
+
+/* visible focus, drawn outside the control edge */
+:focus-visible,
+button:focus-visible, summary:focus-visible, a:focus-visible, textarea:focus-visible,
+[data-testid="stSidebarNav"] a:focus-visible {
+  outline: 2px solid var(--dp-color-primary) !important;
+  outline-offset: 3px !important;
+  box-shadow: none !important;
+}
+
+/* ---- paper sheets with different curves ------------------------------- */
+[data-testid="stVerticalBlockBorderWrapper"]:has(> div > [data-testid="stVerticalBlock"]) {
+  background: var(--dp-color-surface);
+  border: var(--dp-border-hairline) solid var(--dp-rule);
+  border-radius: var(--dp-radius-sheet-a);
+}
+[data-testid="stVerticalBlockBorderWrapper"] [data-testid="stVerticalBlockBorderWrapper"] { border-radius: var(--dp-radius-sheet-b); }
+[data-testid="stChatMessage"] { border-radius: var(--dp-radius-sheet-b); }
+[data-testid="stChatMessageAvatarUser"] { background: var(--dp-color-art-accent); color: var(--dp-color-ink); }
+[data-testid="stChatMessageAvatarAssistant"] { background: var(--dp-color-primary); color: var(--dp-color-surface); }
+[data-testid="stChatInput"] { border-radius: var(--dp-radius-sheet-a); transition: border-color var(--dp-motion-interaction); }
+[data-testid="stAlert"] { border-radius: var(--dp-radius-sheet-b); }
+[data-testid="stFileUploaderDropzone"] { border-radius: var(--dp-radius-sheet-a); border: 1px dashed var(--dp-color-primary); background: var(--dp-color-surface); }
+[data-testid="stCode"], [data-testid="stCode"] pre { border-radius: 18px 12px 20px 12px / 14px 18px 12px 20px; }
+
+/* ---- disclosures as ruled rows ---------------------------------------- */
+[data-testid="stExpander"] details { border: none; border-top: 1px solid var(--dp-rule); border-bottom: 1px solid var(--dp-rule); border-radius: 0; background: transparent; }
+[data-testid="stExpander"] summary { transition: background-color var(--dp-motion-interaction); }
+[data-testid="stExpander"] summary:hover { background: var(--dp-color-surface-muted); }
+[data-testid="stExpander"] details[open] > summary { border-left: 3px solid var(--dp-color-primary); font-weight: 600; }
+
+/* ---- tables ----------------------------------------------------------- */
+[data-testid="stTable"] table { border-collapse: collapse; }
+[data-testid="stTable"] th, [data-testid="stTable"] td { border: none; border-bottom: 1px solid var(--dp-rule); }
+
+/* ---- sidebar navigation ----------------------------------------------- */
+[data-testid="stSidebarNav"] a { border-radius: var(--dp-radius-control); transition: background-color var(--dp-motion-interaction); }
+[data-testid="stSidebarNav"] a[aria-current="page"] { background: var(--dp-color-surface); }
+
+/* ---- dashboard: facts tray, moss basin, loose shapes ------------------ */
+[data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) {
+  background: var(--dp-color-surface);
+  border: 1px solid var(--dp-rule);
+  border-radius: 38px 20px 30px 24px / 24px 34px 20px 38px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .organic-status) {
+  background: var(--dp-color-primary);
+  border-color: var(--dp-color-primary) !important;
+  border-radius: var(--dp-radius-sheet-a);
+  padding: 1rem 1.25rem;
+  color: var(--dp-color-surface);
+}
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .organic-status) :is(p, a, strong, li, span, label, h1, h2, h3, h4) { color: var(--dp-color-surface); }
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .organic-status) code { background: rgba(245, 237, 223, 0.16); color: var(--dp-color-surface); }
+[data-testid="stVerticalBlock"]:has(> [data-testid="stElementContainer"] .organic-status) [data-testid="stCaptionContainer"] { color: var(--dp-color-surface); }
+
+/* contrast and focus fixes from QA */
+[data-testid="stCaptionContainer"], [data-testid="stFileUploaderDropzoneInstructions"] span { opacity: 1 !important; }
+th { color: var(--dp-color-ink-muted) !important; opacity: 1 !important; }
+[data-testid="stMain"]:focus-visible, [data-testid="stAppScrollToBottomContainer"]:focus-visible { outline: none !important; }
+textarea[data-testid="stChatInputTextArea"]:focus-visible { outline: none !important; }
+[data-testid="stChatInput"]:has(textarea:focus-visible) { outline: 2px solid var(--dp-color-primary); outline-offset: 3px; }
+[data-testid="stCode"] :focus-visible, pre:focus-visible { outline-offset: -2px !important; }
+h1, h2, h3, h4 { font-family: var(--dp-typography-display) !important; }
+[data-testid="stChatMessage"] { background: var(--dp-color-surface); }
+[data-testid="stBottom"] > div { background: var(--dp-color-ground); }
+[data-testid="stSkipToContent"] { color: var(--dp-color-primary); }
+[data-testid="stMetricLabel"] p { white-space: normal; overflow: visible; text-overflow: clip; }
+.stButton button p { white-space: nowrap; }
+.stButton button:disabled:hover { background: var(--dp-color-primary); color: var(--dp-color-surface); border-color: var(--dp-color-primary); }
+[data-testid="stFileUploader"] button:active:not(:disabled) { transform: scale(0.97); }
+.organic-art { position: absolute; top: 1.5rem; right: 0; width: 220px; height: 170px; pointer-events: none; z-index: 0; }
+.organic-art span { position: absolute; display: block; }
+.organic-art span:nth-child(1) { width: 120px; height: 100px; right: 40px; top: 0; background: var(--dp-color-art-accent); border-radius: 58% 42% 55% 45% / 50% 60% 40% 50%; transform: rotate(-8deg); }
+.organic-art span:nth-child(2) { width: 90px; height: 80px; right: 0; top: 70px; background: var(--dp-color-highlight); border-radius: 45% 55% 40% 60% / 60% 40% 60% 40%; transform: rotate(10deg); }
+.organic-art span:nth-child(3) { width: 70px; height: 60px; right: 120px; top: 96px; background: var(--dp-color-surface-muted); border-radius: 60% 40% 50% 50% / 45% 55% 45% 55%; transform: rotate(-4deg); }
+
+/* ---- responsive ------------------------------------------------------- */
+/* keep body text clear of the loose shapes */
+@media (min-width: 701px) {
+  [data-testid="stMain"]:has(.organic-art) .stMarkdown p { max-width: min(46rem, calc(100% - 250px)); }
+}
+@media (max-width: 1100px) {
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) { flex-wrap: wrap; }
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"] { min-width: calc(50% - 1rem); flex: 1 1 calc(50% - 1rem); }
+}
+@media (max-width: 1000px) {
+  .block-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .organic-art { width: 150px; height: 120px; opacity: 0.9; }
+  [data-testid="stMain"]:has(.organic-art) .stMarkdown p { max-width: min(46rem, calc(100% - 180px)); }
+}
+@media (max-width: 700px) {
+  .organic-art { display: none; }
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) { flex-wrap: wrap; padding: 1rem; }
+  [data-testid="stHorizontalBlock"]:has([data-testid="stMetric"]) > [data-testid="stColumn"] { min-width: calc(50% - 1rem); flex: 1 1 calc(50% - 1rem); }
+  .stMarkdown p { max-width: none; }
+}
+
+/* ---- reduced motion --------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .stButton button, [data-testid="stFileUploader"] button, [data-testid="stExpander"] summary,
+  [data-testid="stSidebarNav"] a, [data-testid="stChatInput"] { transition: none !important; }
+  .stButton button:active:not(:disabled) { transform: none !important; }
+}
+
+/* Prevent long model names from breaking vertically */
+[data-testid="stMain"] .stMarkdown strong {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    line-height: 1.5;
+}

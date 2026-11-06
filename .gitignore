@@ -1,0 +1,22 @@
+# Virtual environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Generated data: rebuild the vector database with `python index_documents.py`
+data/chroma_db/
+
+# Files uploaded through the web interface (private to each user)
+docs/uploads/
+
+# Editor / OS / secrets
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.env
+*.tmp
+# Generated evaluation and diagnostic output
+evaluation/top_k_details.txt
+scripts/diagnostics/inspect_output.txt

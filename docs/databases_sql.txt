@@ -1,0 +1,399 @@
+# Database and SQL Fundamentals
+
+## 1. Introduction to Databases
+
+A database is an organized collection of data that can be stored, accessed, managed, and updated electronically.
+
+Databases are used to store information such as customer records, employee details, product information, financial transactions, and application data.
+
+A Database Management System (DBMS) is software that allows users and applications to interact with databases. It provides functions for creating, retrieving, updating, and deleting data.
+
+Popular database management systems include MySQL, PostgreSQL, Microsoft SQL Server, Oracle Database, and SQLite.
+
+## 2. Types of Databases
+
+Databases can be classified into different types based on how they organize and store information.
+
+### 2.1 Relational Databases
+
+A relational database stores data in tables consisting of rows and columns.
+
+Each table represents a particular entity, such as students, employees, or products. Rows represent individual records, while columns represent attributes of those records.
+
+Relational databases use Structured Query Language (SQL) to manage and retrieve data.
+
+Examples include MySQL, PostgreSQL, SQLite, and Microsoft SQL Server.
+
+### 2.2 Non-Relational Databases
+
+A non-relational database, commonly called a NoSQL database, stores data using structures other than traditional relational tables.
+
+Depending on the database, information may be stored as documents, key-value pairs, graphs, or wide-column records.
+
+NoSQL databases are often used for applications involving flexible data structures, large datasets, and distributed systems.
+
+Examples include MongoDB, Redis, Cassandra, and Neo4j.
+
+## 3. Introduction to SQL
+
+Structured Query Language (SQL) is a programming language used to communicate with relational databases.
+
+SQL allows users to create database structures, insert records, retrieve information, update existing records, and delete data.
+
+SQL is commonly used in data analysis, backend development, business intelligence, and database administration.
+
+A basic SQL query uses the SELECT statement to retrieve information from a table.
+
+Example:
+
+SELECT * FROM students;
+
+This query retrieves all columns and records from the students table.
+
+## 4. Categories of SQL Commands
+
+SQL commands are commonly divided into several categories based on their purpose.
+
+### 4.1 Data Definition Language (DDL)
+
+DDL commands are used to define and modify database structures.
+
+Common DDL commands include:
+- CREATE: Creates a new database object, such as a table.
+- ALTER: Modifies the structure of an existing table.
+- DROP: Deletes a database object.
+- TRUNCATE: Removes all records from a table while retaining its structure.
+
+Example:
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+
+### 4.2 Data Manipulation Language (DML)
+
+DML commands are used to insert, modify, and delete records in database tables.
+
+Common DML commands include:
+- INSERT: Adds new records.
+- UPDATE: Modifies existing records.
+- DELETE: Removes records.
+
+Example:
+
+INSERT INTO students (student_id, name, age)
+VALUES (1, 'Arun', 21);
+
+### 4.3 Data Query Language (DQL)
+
+DQL is used to retrieve information from database tables.
+
+The primary DQL command is SELECT.
+
+Example:
+
+SELECT name, age
+FROM students
+WHERE age > 18;
+
+This query retrieves the names and ages of students whose age is greater than 18.
+
+### 4.4 Data Control Language (DCL)
+
+DCL commands are used to manage database access permissions.
+
+Common DCL commands include:
+- GRANT: Gives privileges to database users.
+- REVOKE: Removes previously granted privileges.
+
+### 4.5 Transaction Control Language (TCL)
+
+TCL commands manage database transactions.
+
+Common TCL commands include:
+- COMMIT: Permanently saves changes made during a transaction.
+- ROLLBACK: Reverses changes made during a transaction that has not been committed.
+- SAVEPOINT: Creates a point within a transaction to which a rollback can be performed.
+
+## 5. Primary Keys and Foreign Keys
+
+A primary key is a column or combination of columns that uniquely identifies each record in a database table.
+
+A primary key must contain unique values and cannot contain NULL values.
+
+Example:
+
+In a students table, student_id can be used as the primary key because every student has a unique identifier.
+
+A foreign key is a column or combination of columns that establishes a relationship between two tables.
+
+It references a primary key or another eligible unique key in the referenced table.
+
+For example, a student_id column in an exam_results table may reference student_id in the students table.
+
+Foreign keys help maintain referential integrity between related tables.
+
+## 6. SQL Constraints
+
+Constraints are rules applied to database columns to maintain data accuracy and integrity.
+
+Common SQL constraints include:
+- PRIMARY KEY: Uniquely identifies each record.
+- FOREIGN KEY: Establishes a relationship between tables.
+- NOT NULL: Prevents a column from storing NULL values.
+- UNIQUE: Ensures that values in a column or column combination are unique.
+- CHECK: Ensures that values satisfy a specified condition.
+- DEFAULT: Assigns a default value when no value is provided.
+
+Constraints help prevent invalid or inconsistent data from being stored.
+
+## 7. Filtering and Sorting Data
+
+The WHERE clause is used to filter records based on specified conditions.
+
+Example:
+
+SELECT * FROM students
+WHERE age > 20;
+
+The ORDER BY clause sorts query results in ascending or descending order.
+
+Example:
+
+SELECT * FROM students
+ORDER BY age DESC;
+
+ASC sorts in ascending order, while DESC sorts in descending order.
+
+The LIMIT clause restricts the number of rows returned by a query in database systems that support this syntax.
+
+Example:
+
+SELECT * FROM students
+LIMIT 5;
+
+## 8. SQL Joins
+
+A JOIN combines records from two or more tables based on a related column.
+
+Joins are useful when information is distributed across multiple related tables.
+
+### 8.1 INNER JOIN
+
+INNER JOIN returns records that have matching values in both tables.
+
+### 8.2 LEFT JOIN
+
+LEFT JOIN returns all records from the left table and matching records from the right table. If no match exists, the right-side columns contain NULL values.
+
+### 8.3 RIGHT JOIN
+
+RIGHT JOIN returns all records from the right table and matching records from the left table. If no match exists, the left-side columns contain NULL values.
+
+### 8.4 FULL OUTER JOIN
+
+FULL OUTER JOIN returns matching records as well as unmatched records from both tables. Unmatched columns contain NULL values.
+
+Not all database systems support FULL OUTER JOIN directly.
+
+### 8.5 CROSS JOIN
+
+CROSS JOIN returns the Cartesian product of two tables. Every row from the first table is combined with every row from the second table.
+
+## 9. Aggregate Functions
+
+Aggregate functions perform calculations on a group of records and return a single result.
+
+Common SQL aggregate functions include:
+
+- COUNT(): Counts the number of records.
+- SUM(): Calculates the total of numeric values.
+- AVG(): Calculates the average of numeric values.
+- MIN(): Returns the smallest value.
+- MAX(): Returns the largest value.
+
+Example:
+
+SELECT AVG(age)
+FROM students;
+
+This query calculates the average age of all students.
+
+## 10. GROUP BY and HAVING
+
+The GROUP BY clause groups records that have the same values in specified columns.
+
+It is commonly used with aggregate functions.
+
+Example:
+
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department;
+
+This query counts the number of employees in each department.
+
+The HAVING clause filters grouped results based on aggregate conditions.
+
+Example:
+
+SELECT department, COUNT(*)
+FROM employees
+GROUP BY department
+HAVING COUNT(*) > 5;
+
+The WHERE clause filters individual records before grouping, while HAVING filters groups after aggregation.
+
+## 11. Subqueries
+
+A subquery is a query written inside another SQL query.
+
+Subqueries can be used in SELECT, FROM, and WHERE clauses.
+
+Example:
+
+SELECT name
+FROM students
+WHERE age > (
+    SELECT AVG(age)
+    FROM students
+);
+
+The inner query calculates the average age, while the outer query retrieves the names of students older than that average.
+
+Subqueries are useful for performing complex database operations using smaller queries.
+
+## 12. Database Normalization
+
+Normalization is the process of organizing database tables to reduce data duplication and improve data integrity.
+
+It divides data into related tables and establishes relationships between them.
+
+Common normalization forms include:
+
+### First Normal Form (1NF)
+
+A table is in First Normal Form when each column contains atomic values and there are no repeating groups.
+
+### Second Normal Form (2NF)
+
+A table is in Second Normal Form when it satisfies 1NF and every non-key attribute depends on the entire candidate key rather than only part of a composite key.
+
+### Third Normal Form (3NF)
+
+A table is in Third Normal Form when it satisfies 2NF and non-key attributes do not have transitive dependencies on a candidate key.
+
+Normalization helps maintain consistency and reduces unnecessary duplication.
+
+## 13. Database Indexing
+
+An index is a data structure that improves the speed of data retrieval operations.
+
+Indexes allow a database system to locate records without scanning every row in a table.
+
+Indexes are commonly created on columns frequently used in WHERE conditions, JOIN operations, and sorting.
+
+Example:
+
+CREATE INDEX idx_student_name
+ON students(name);
+
+Although indexes can improve read performance, they require additional storage and may slow down INSERT, UPDATE, and DELETE operations because the indexes also need to be maintained.
+
+## 14. Database Transactions and ACID Properties
+
+A transaction is a sequence of database operations treated as a single logical unit of work.
+
+Transactions help maintain database consistency, especially when multiple operations must succeed together.
+
+The ACID properties describe important characteristics of reliable database transactions.
+
+### Atomicity
+
+Atomicity ensures that all operations in a transaction succeed together or that none of them are applied.
+
+### Consistency
+
+Consistency ensures that a transaction moves the database from one valid state to another while maintaining defined constraints.
+
+### Isolation
+
+Isolation ensures that concurrent transactions do not interfere with one another in ways that violate the database's transaction rules.
+
+### Durability
+
+Durability ensures that committed changes remain saved even if a system failure occurs afterward.
+
+## 15. SQL Views
+
+A view is a virtual table based on the result of a SQL query.
+
+Views can simplify complex queries and control which information is exposed to users.
+
+Example:
+
+CREATE VIEW adult_students AS
+SELECT name, age
+FROM students
+WHERE age >= 18;
+
+The view can then be queried like a table:
+
+SELECT * FROM adult_students;
+
+A standard view stores its query definition rather than necessarily storing a separate copy of the underlying data.
+
+## 16. Stored Procedures and Functions
+
+A stored procedure is a group of SQL statements stored in a database and executed when requested.
+
+Stored procedures can help organize repeated database operations and centralize business logic.
+
+A database function is a reusable routine that returns a value or, depending on the database system, a table.
+
+The syntax and capabilities of stored procedures and functions vary across database management systems.
+
+## 17. Database Security
+
+Database security involves protecting stored information against unauthorized access, modification, disclosure, or destruction.
+
+Common database security practices include:
+- User authentication and authorization.
+- Role-based access control.
+- Strong passwords and secure credential storage.
+- Encryption of sensitive data.
+- Regular backups.
+- Database activity monitoring.
+- Applying software updates and security patches.
+
+The principle of least privilege means users should receive only the permissions necessary to perform their responsibilities.
+
+## 18. SQL in Data Analysis
+
+SQL is widely used in data analysis to retrieve, filter, combine, and summarize information from databases.
+
+Data analysts commonly use SQL to:
+- Extract data from relational databases.
+- Filter records based on business requirements.
+- Combine information from multiple tables.
+- Calculate totals, averages, and other metrics.
+- Identify trends and patterns.
+- Prepare datasets for visualization and reporting.
+
+SQL is frequently used alongside Python, Pandas, Excel, and Power BI in data analytics workflows.
+
+## 19. Popular Database Management Systems
+
+Different database management systems are designed for different application requirements.
+
+- MySQL: An open-source relational database commonly used in web applications.
+- PostgreSQL: An open-source relational database known for advanced SQL features and extensibility.
+- SQLite: A lightweight, file-based relational database that does not require a separate database server.
+- Microsoft SQL Server: A relational database management system developed by Microsoft.
+- Oracle Database: An enterprise relational database management system.
+- MongoDB: A document-oriented NoSQL database that stores data in flexible document structures.
+- Redis: An in-memory data store commonly used for caching and other low-latency applications.
+
+The selection of a database depends on factors such as data structure, scalability, performance, security, and application requirements.

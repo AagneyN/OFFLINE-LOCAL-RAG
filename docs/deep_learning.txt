@@ -1,0 +1,120 @@
+
+# Deep Learning Fundamentals
+
+## 1. Introduction to Deep Learning
+
+Deep Learning is a subfield of Machine Learning that uses artificial neural networks with multiple layers to learn complex patterns from data.
+
+Deep learning models can automatically learn hierarchical representations of information. Lower layers may identify simple patterns, while deeper layers can learn more complex features.
+
+Deep learning is widely used in computer vision, natural language processing, speech recognition, and autonomous systems.
+
+## 2. Artificial Neural Networks
+
+An Artificial Neural Network (ANN) is a computational model inspired by the structure of biological neural networks.
+
+An ANN consists of interconnected units called neurons, which are organized into layers.
+
+The main layers are the input layer, hidden layers, and output layer.
+
+The input layer receives data. Hidden layers process information through weighted connections and activation functions. The output layer produces the final prediction.
+
+## 3. Weights and Biases
+
+Weights determine the strength of connections between neurons.
+
+Biases are additional parameters that allow a neuron to adjust its output independently of the weighted input.
+
+During training, a neural network updates its weights and biases to reduce prediction errors.
+
+## 4. Activation Functions
+
+Activation functions introduce non-linearity into neural networks. Without non-linear activation functions, a network composed of multiple layers would behave like a linear transformation.
+
+Common activation functions include:
+
+ReLU (Rectified Linear Unit) returns zero for negative inputs and returns the input itself for positive inputs.
+
+Sigmoid maps input values into a range between zero and one. It is commonly used in binary classification output layers.
+
+Tanh maps input values into a range between negative one and positive one.
+
+Softmax converts a vector of values into a probability distribution. It is commonly used in multiclass classification output layers.
+
+## 5. Forward Propagation
+
+Forward propagation is the process through which input data passes through a neural network to produce an output.
+
+Each neuron calculates a weighted sum of its inputs, adds a bias, and applies an activation function.
+
+The resulting output moves through subsequent layers until the network produces its final prediction.
+
+## 6. Loss Functions
+
+A loss function measures the difference between a model's prediction and the actual target value.
+
+The objective of neural network training is to minimize this loss.
+
+Mean Squared Error is commonly used for regression problems.
+
+Binary Cross-Entropy is commonly used for binary classification.
+
+Categorical Cross-Entropy is commonly used for multiclass classification.
+
+## 7. Backpropagation
+
+Backpropagation is an algorithm used to calculate gradients of the loss function with respect to neural network parameters.
+
+It propagates error information backward through the network using the chain rule of calculus.
+
+The calculated gradients indicate how weights and biases should be adjusted to reduce the loss.
+
+Backpropagation is commonly combined with an optimization algorithm to update network parameters.
+
+## 8. Gradient Descent
+
+Gradient Descent is an optimization algorithm used to minimize a model's loss function.
+
+It updates model parameters in the direction opposite to the gradient of the loss.
+
+The learning rate determines the size of each parameter update.
+
+A learning rate that is too high may cause unstable training, while one that is too low may result in slow convergence.
+
+Common optimization algorithms include Stochastic Gradient Descent, Adam, and RMSprop.
+
+## 9. Convolutional Neural Networks
+
+A Convolutional Neural Network (CNN) is a type of deep learning architecture commonly used for image processing and computer vision.
+
+CNNs use convolutional layers to extract spatial features from images.
+
+Pooling layers reduce the spatial dimensions of feature maps and help reduce computational requirements.
+
+CNNs are commonly used in image classification, object detection, facial recognition, and medical image analysis.
+
+## 10. Recurrent Neural Networks
+
+A Recurrent Neural Network (RNN) is a neural network architecture designed to process sequential data.
+
+RNNs maintain a hidden state that carries information from previous time steps.
+
+They have been used in language modelling, time-series forecasting, and speech recognition.
+
+Long Short-Term Memory (LSTM) and Gated Recurrent Unit (GRU) are architectures designed to address some limitations of traditional RNNs, particularly difficulties learning long-term dependencies.
+
+## 11. Transformers
+
+Transformers are neural network architectures that use attention mechanisms to process relationships between elements in a sequence.
+
+Unlike traditional recurrent architectures, transformers can process sequence elements in parallel during training.
+
+Self-attention allows a model to determine how much importance different tokens should receive when creating contextual representations.
+
+Transformers are widely used in modern natural language processing and large language models.
+
+## 12. Applications of Deep Learning
+
+Deep learning is used in image recognition, object detection, natural language processing, speech recognition, recommendation systems, medical image analysis, and autonomous vehicles.
+
+Its performance often depends on the availability of suitable training data, computational resources, model architecture, and training configuration.

@@ -1,0 +1,19 @@
+﻿# Introduction to Retrieval-Augmented Generation
+
+Retrieval-Augmented Generation, also called RAG, combines information retrieval with language generation.
+
+A RAG system retrieves relevant passages from a knowledge base and provides them as context to a language model. The model uses this context to formulate an answer.
+
+A typical RAG pipeline contains document ingestion, text chunking, embedding generation, vector storage, similarity search, and answer generation.
+
+Document chunking divides large documents into smaller passages. This makes it easier to retrieve specific information rather than supplying an entire document to the language model.
+
+Embeddings represent text as numerical vectors. Texts with similar meanings can have similar vector representations, making semantic search possible.
+
+A vector database stores embeddings and associated document information. When a user asks a question, the system embeds the question and searches for relevant document passages.
+
+RAG does not require fine-tuning the language model. It provides external knowledge to the model at inference time.
+
+A major advantage of RAG is source traceability. The application can show which documents supported an answer. However, retrieval quality depends on the documents, chunking strategy, embedding model, and search configuration.
+
+Chunk overlap is a document chunking technique where a portion of the previous chunk is repeated in the next chunk. It helps preserve context when information is split across multiple passages. Without overlap, important information near chunk boundaries may become disconnected.

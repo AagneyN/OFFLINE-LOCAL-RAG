@@ -1,0 +1,217 @@
+# Large Language Models (LLMs) Fundamentals
+
+## 1. Introduction to Large Language Models
+
+A Large Language Model (LLM) is an artificial intelligence model trained on large amounts of text data to understand and generate human language. LLMs can perform tasks such as answering questions, summarising documents, translating languages, writing code, and generating text.
+
+Most modern LLMs are based on the Transformer architecture. They learn patterns, relationships, and structures in language during training. Examples of popular LLMs include Llama, GPT, Qwen, and Mistral.
+
+## 2. Tokens and Tokenization
+
+A token is a basic unit of text processed by a language model. A token may represent a complete word, part of a word, punctuation, or another text symbol.
+
+Tokenization is the process of converting input text into tokens that a language model can process. The tokenizer assigns numerical IDs to these tokens.
+
+For example, a sentence is divided into smaller units before being passed to the model. The model processes token IDs rather than directly processing ordinary text.
+
+Tokenization affects the number of tokens in a prompt, the context window required, and the computational resources needed for inference.
+
+## 3. Context Window
+
+A context window is the maximum amount of token information a language model can process at one time. It includes the input prompt, conversation history, and other information supplied to the model.
+
+A larger context window allows a model to process longer documents and conversations. However, using a larger context may require more memory and computational resources.
+
+When the input exceeds the context window, some information may need to be removed or shortened before processing.
+
+## 4. Transformer Architecture
+
+The Transformer is a neural network architecture designed to process sequential data using attention mechanisms.
+
+Unlike traditional recurrent neural networks, Transformers can process multiple sequence positions in parallel during training.
+
+The main components of a Transformer include:
+- Token embeddings, which convert token IDs into numerical representations.
+- Positional information, which helps the model represent token order.
+- Attention layers, which identify relationships between tokens.
+- Feed-forward neural network layers, which transform representations.
+- Normalization and residual connections, which support stable information flow through the network.
+
+Transformers form the foundation of many modern language models.
+
+## 5. Attention Mechanism
+
+Attention is a mechanism that allows a model to determine which parts of an input sequence are important when processing a particular token.
+
+Self-attention calculates relationships between tokens within the same sequence. It allows each token to incorporate information from other relevant tokens.
+
+In Transformer models, attention commonly uses three representations:
+- Query: Represents the information a token is looking for.
+- Key: Represents the information a token makes available for matching.
+- Value: Contains the information that can be passed to the output.
+
+The model compares queries and keys to calculate attention scores. These scores are converted into weights and used to combine value representations.
+
+Multi-head attention performs attention calculations through multiple heads, allowing the model to learn different types of relationships.
+
+## 6. Pre-training
+
+Pre-training is the initial training stage in which a language model learns general language patterns from a large dataset.
+
+Many decoder-only language models use next-token prediction as their training objective. The model receives a sequence of tokens and learns to predict the next token.
+
+During pre-training, the model adjusts its parameters to reduce prediction errors. This process requires substantial training data and computational resources.
+
+The result is a base model that has learned general language and pattern representations but may not yet reliably follow user instructions.
+
+## 7. Fine-tuning
+
+Fine-tuning is the process of further training a pre-trained model using a more specific dataset or task.
+
+Fine-tuning can adapt a model to follow instructions, use a particular writing style, classify information, or perform a specialised task.
+
+Unlike training a model from scratch, fine-tuning starts with an existing model and adjusts its parameters using additional training data.
+
+The quality and relevance of the fine-tuning dataset strongly influence the resulting model's behaviour.
+
+## 8. Instruction Tuning
+
+Instruction tuning is a type of fine-tuning in which a model is trained using examples of instructions and their expected responses.
+
+The objective is to improve the model's ability to understand user requests and generate appropriate responses.
+
+Instruction datasets commonly contain a user instruction, optional input context, and an expected output.
+
+Instruction tuning helps convert a general base model into a model that can respond more effectively to conversational requests.
+
+## 9. LoRA (Low-Rank Adaptation)
+
+Low-Rank Adaptation, commonly known as LoRA, is a parameter-efficient fine-tuning technique.
+
+Instead of updating all the original model parameters, LoRA introduces smaller trainable matrices into selected layers of the model.
+
+The original model weights are generally kept frozen while the added low-rank matrices are trained.
+
+LoRA reduces the number of trainable parameters, memory requirements, and computational costs compared with full fine-tuning.
+
+It is commonly used when adapting large language models using limited hardware resources.
+
+## 10. QLoRA (Quantized Low-Rank Adaptation)
+
+QLoRA combines quantization with LoRA to reduce the memory required for fine-tuning large language models.
+
+The base model is loaded in a low-bit quantized format, commonly 4-bit, while LoRA adapter parameters are trained.
+
+This approach allows fine-tuning of larger models using less GPU memory than traditional full-precision fine-tuning.
+
+QLoRA is useful for experimentation and model adaptation on consumer GPUs or limited cloud GPU environments.
+
+## 11. Quantization
+
+Quantization is a technique that reduces the numerical precision used to represent model weights.
+
+For example, a model may use 16-bit floating-point weights during one configuration and 4-bit representations in another.
+
+Lower-bit quantization reduces model memory requirements and can make local inference possible on hardware with limited resources.
+
+However, aggressive quantization may affect model accuracy or output quality.
+
+Quantization is commonly used to run large language models locally.
+
+## 12. Model Inference
+
+Inference is the process of using a trained model to generate predictions or responses.
+
+For an LLM, inference begins when a user supplies a prompt. The model processes the input tokens and predicts the next token repeatedly until it generates a response or reaches a stopping condition.
+
+Inference does not normally update the model's learned parameters.
+
+Local inference means running the model on a local computer or server instead of sending prompts to an external cloud-based model service.
+
+## 13. Temperature and Sampling
+
+Temperature is a generation parameter that controls the randomness of token selection.
+
+A lower temperature generally produces more predictable and focused responses. A higher temperature generally produces more varied and creative responses.
+
+Sampling is the process of selecting the next token from the model's predicted probability distribution.
+
+Other generation parameters include top-k and top-p sampling. These control which candidate tokens are considered during generation.
+
+Generation settings influence the style, diversity, and consistency of model outputs.
+
+## 14. Hallucinations in Large Language Models
+
+A hallucination occurs when a language model generates information that is incorrect, unsupported, or fabricated while presenting it as if it were factual.
+
+Hallucinations can occur because language models generate responses based on learned statistical patterns rather than directly verifying every statement against reliable sources.
+
+Hallucinations are a major concern in applications involving medical information, legal documents, finance, and factual question answering.
+
+Providing relevant source documents, using retrieval-augmented generation, and verifying generated responses can help reduce hallucination risks.
+
+## 15. Retrieval-Augmented Generation (RAG)
+
+Retrieval-Augmented Generation is an approach that combines information retrieval with language generation.
+
+Instead of relying only on information learned during training, a RAG system retrieves relevant information from an external knowledge base and supplies it to the language model as context.
+
+A typical RAG pipeline includes:
+1. Document ingestion.
+2. Text chunking.
+3. Embedding generation.
+4. Vector database storage.
+5. Query embedding.
+6. Similarity-based retrieval.
+7. Context construction.
+8. Answer generation using an LLM.
+
+RAG allows a language model to answer questions using external documents without requiring the model to be fine-tuned whenever the knowledge base changes.
+
+## 16. RAG vs. Fine-tuning
+
+RAG and fine-tuning solve different problems.
+
+RAG provides a model with external information at inference time. It is useful when an application needs to answer questions using documents, updated information, or a private knowledge base.
+
+Fine-tuning modifies a model's learned parameters using additional training examples. It is useful when a model needs to adapt its behaviour, response format, or specialised task performance.
+
+RAG does not normally change the underlying model weights. Fine-tuning changes some or all model parameters depending on the training method.
+
+The two approaches can also be combined in the same application.
+
+## 17. Ollama and Local Language Models
+
+Ollama is a tool that allows users to download and run supported large language models locally.
+
+It provides a local interface for interacting with models through a command-line interface or API.
+
+Ollama can be used to run models such as Qwen, Llama, and Mistral, depending on model availability and hardware requirements.
+
+Local inference can reduce dependence on external model APIs and keep prompts and documents on the local machine, provided the application and its supporting components are configured to operate offline.
+
+## 18. Model Evaluation
+
+Language models can be evaluated using different methods depending on their intended application.
+
+Common evaluation approaches include:
+- Accuracy: Measures the proportion of correct predictions in suitable classification tasks.
+- Perplexity: Measures how well a language model predicts a sequence of tokens.
+- Exact Match: Measures whether a generated answer exactly matches a reference answer.
+- ROUGE: Measures overlap between generated and reference text, commonly in summarisation.
+- BLEU: Measures n-gram overlap and is commonly used in machine translation.
+- Human Evaluation: Uses human reviewers to assess relevance, correctness, clarity, and usefulness.
+
+For RAG applications, additional metrics can evaluate retrieval relevance, answer faithfulness, context precision, and context recall.
+
+## 19. Limitations of Large Language Models
+
+Large language models have several limitations:
+- They may generate incorrect or fabricated information.
+- Their knowledge may become outdated after training.
+- They can struggle with complex reasoning and ambiguous instructions.
+- Large models require significant computational resources.
+- Their responses can be influenced by biases in training data.
+- Their performance depends on prompt quality and model configuration.
+
+Responsible deployment requires testing, monitoring, and appropriate safeguards.
